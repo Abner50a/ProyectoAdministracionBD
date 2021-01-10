@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/normalize.css")
+        link(rel="stylesheet", href="/css/app.css")
+        title #{nombrePagina}
+    body
+        header.barra
+            h1 Activdades de tareas
+            a(href="#") cerrar sesion
+
+        main.contenedor
+            aside.contenedor-proyectos
+                .panel.crear-proyecto
+                    a(href="/nueva-actividad" class="boton") Nueva Activdad
+                        span +
+
+                .panel.lista-proyectos
+                    h2 Actividades
+                    ul#proyectos.proyectos
+                        li
+                            a(href="#") Ejemplo1
+                        li
+                            a(href="#") Ejemplo2
+                        li
+                            a(href="#") Ejemplo3
+            block contenido                
+
+
+
+    
