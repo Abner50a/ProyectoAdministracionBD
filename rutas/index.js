@@ -9,6 +9,7 @@ module.exports = function () {
     router.get('/', proyectoControlador.activdadesInicio);
 
 
+    
     return router;
 }
 
