@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router()
 
-module.exports = function () {
-    router.get('/', (req,res) => {
+//Ruta del inicio
+const proyectoControlador = require('../controlador/proyectoControlador');
 
-        res.send('hola')
-    
-    });
+module.exports = function () {
+
+    router.get('/', proyectoControlador.activdadesInicio);
+
 
     return router;
 }
