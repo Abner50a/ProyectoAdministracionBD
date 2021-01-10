@@ -1,3 +1,5 @@
+const Actividades = require('../modelo/Actividades');
+
 exports.activdadesInicio = (req,res) => {
     res.render('index',{
         nombrePagina: 'Inicio'
@@ -10,7 +12,7 @@ exports.formumlarioActividades = (req,res) => {
     })
 }
 
-exports.nuevoActividad = (req,res) => {
+exports.nuevoActividad = async (req,res) => {
     //Send.exports
     //console.log(req.body)
 
@@ -30,6 +32,8 @@ exports.nuevoActividad = (req,res) => {
         }) 
     } else {
         //Insertar datos ya validados
-    }
+        const agregar = await Actividades.create({nombre});
+        res.redirect('/')
 
+    }
 }

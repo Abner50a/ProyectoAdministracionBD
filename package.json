@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Abner50a/ProyectoAdministracionBD#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-validator": "^6.9.2",
     "mysql2": "^2.2.5",
     "pug": "^3.0.0",
     "sequelize": "^6.3.5"
