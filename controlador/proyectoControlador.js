@@ -1,4 +1,5 @@
 const Actividades = require('../modelo/Actividades');
+const slug = require('slug');
 
 exports.activdadesInicio = (req,res) => {
     res.render('index',{
@@ -32,6 +33,7 @@ exports.nuevoActividad = async (req,res) => {
         }) 
     } else {
         //Insertar datos ya validados
+        
         const agregar = await Actividades.create({nombre});
         res.redirect('/')
 
