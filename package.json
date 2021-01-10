@@ -1,0 +1,25 @@
+{
+  "name": "proyectobd",
+  "version": "1.0.0",
+  "description": "proyecto de adm de actividades para la materia de ABD para la ujat",
+  "main": "index.js",
+  "scripts": {
+    "start" : "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abner50a/ProyectoAdministracionBD.git"
+  },
+  "author": "abner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abner50a/ProyectoAdministracionBD/issues"
+  },
+  "homepage": "https://github.com/Abner50a/ProyectoAdministracionBD#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
