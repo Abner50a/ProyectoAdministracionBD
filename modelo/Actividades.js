@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const shortid = require('shortid');
 const slug = require('slug');
 
 const db = require('../conexionBD/db');
@@ -17,10 +18,13 @@ const Actividades = db.define('actividades', {
     hooks: {
         beforeCreate(actividades){
             const idActividades = slug(actividades.nombre).toLowerCase();
-            actividades.idActividades = idActividades;
+            
+            //actividades.idActividades = idActividades;
+            actividades.idActividades =  `${idActividades}-${shortid.generate()}`
         }
     }
 }
 )
+
 
 module.exports =  Actividades;

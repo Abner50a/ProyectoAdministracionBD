@@ -20,12 +20,10 @@ html(lang="es")
                 .panel.lista-proyectos
                     h2 Actividades
                     ul#proyectos.proyectos
-                        li
-                            a(href="#") Ejemplo1
-                        li
-                            a(href="#") Ejemplo2
-                        li
-                            a(href="#") Ejemplo3
+                       if(pasarActividades.length)
+                            each actividades in pasarActividades
+                                li
+                                    a(href="#")= actividades.nombre 
             block contenido                
 
 

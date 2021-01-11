@@ -1,9 +1,15 @@
 const Actividades = require('../modelo/Actividades');
 const slug = require('slug');
 
-exports.activdadesInicio = (req,res) => {
+exports.activdadesInicio =async (req,res) => {
+    //Buscamos las actividades hacermos consultas
+    
+    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+
+
     res.render('index',{
-        nombrePagina: 'Inicio'
+        nombrePagina: 'Inicio',
+        pasarActividades
     });
 }
 
