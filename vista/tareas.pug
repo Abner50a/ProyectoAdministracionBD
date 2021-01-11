@@ -1,0 +1,19 @@
+extends  archivoBase
+
+
+block contenido
+    .contenido-principal
+        h1 #{nombrePagina} - #{actividades.nombre}
+
+
+        //objeto Form
+
+
+        //Objeto Lista
+
+        pre= ArregloLimpiado(actividades)          
+
+        //Botones Objeto
+        .contenedor-acciones
+            a(href=`/actividades/edita/${actividades.id}` class="boton") Editar Actividad
+            button#eliminar-proyecto(type="button" class="boton eliminar") Borrar actividad

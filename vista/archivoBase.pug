@@ -23,8 +23,10 @@ html(lang="es")
                        if(pasarActividades.length)
                             each actividades in pasarActividades
                                 li
-                                    a(href="#")= actividades.nombre 
-            block contenido                
+                                    a(href=`/actividades/${actividades.idActividades}`)= actividades.nombre 
+            block contenido
+
+        //-   pre= ArregloLimpiado(pasarActividades)               
 
 
 

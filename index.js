@@ -1,10 +1,12 @@
 //Require que usa la app
 const express = require('express');
-
 const rutas = require('./rutas');
 const path = require('path');
-
 const bodyParse = require('body-parser');
+
+
+//codigos extras
+const codigos = require('./codigos')
 
 //Se conecta ala BD
 
@@ -30,13 +32,19 @@ app.set('view engine','pug');
     app.set('views',path.join(__dirname, './vista' ));
 
 
+ //Pasar codigo
+ app.use((req,res,next)=>{
+        res.locals.ArregloLimpiado = codigos.regresarObjecto;
+        next();
+ }); 
+
+
 //Validar formulario y pasar
 app.use(bodyParse.urlencoded({extended: true}));
 
 //Rutas para la aplicacion web
 
 app.use('/', rutas());
-
 
 
 

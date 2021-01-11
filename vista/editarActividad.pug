@@ -1,14 +1,12 @@
 extends  archivoBase
-include elementos/crearActividades
 
 
 block contenido
     .contenido-principal
         h1 #{nombrePagina}
-        
-        pre= ArregloLimpiado(actividades)  
 
         if error
             each arreglo in error
                 .alerta= arreglo.errorTexto
-        +crearActividades(actividades)
+
+        

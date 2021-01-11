@@ -13,13 +13,18 @@ exports.activdadesInicio =async (req,res) => {
     });
 }
 
-exports.formumlarioActividades = (req,res) => {
+exports.formumlarioActividades = async (req,res) => {
+    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+
     res.render('nuevaActividad', {
-        nombrePagina: 'Nueva actividad'
+        nombrePagina: 'Nueva actividad',
+        pasarActividades
     })
 }
 
 exports.nuevoActividad = async (req,res) => {
+      const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+  
     //Send.exports
     //console.log(req.body)
 
@@ -35,7 +40,8 @@ exports.nuevoActividad = async (req,res) => {
     if(error.length>0) {
         res.render('nuevaActividad', {
             nombrePagina: 'Nueva actidad',
-            error
+            error,
+            pasarActividades
         }) 
     } else {
         //Insertar datos ya validados
@@ -44,4 +50,63 @@ exports.nuevoActividad = async (req,res) => {
         res.redirect('/')
 
     }
+}
+
+exports.actividadesURL = async (req,res,next)=>{
+    // res.send(req.params.id)
+    // const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    // const actividades = await Actividades.findOne({
+    //     where: {
+    //        idActividades: req.params.id
+    //     }
+    // })
+
+
+    const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    const actidadesPromesa =  Actividades.findOne({
+        where: {
+            idActividades: req.params.id
+        }
+    });
+
+    const [pasarActividades,actividades] = await Promise.all([pasarActividadesPromesa,actidadesPromesa])
+
+
+    //SELECT * FROM actividades WHERE id = 1;
+    if(!actividades){
+        return next();
+    }
+
+    
+    //Enviamos las vistas
+    res.render('tareas', {
+        nombrePagina: 'Tareas de las actividades',
+        actividades,
+        pasarActividades
+    })
+}
+
+exports.actividadesEditarForm =  async (req,res) => {
+    // const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    // const actidades = await Actividades.findOne({
+    //     where: {
+    //         id: req.params.id
+    //     }
+    // });
+
+
+    const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    const actidadesPromesa =  Actividades.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    const [pasarActividades,actividades] = await Promise.all([pasarActividadesPromesa,actidadesPromesa])
+
+    res.render('nuevaActividad',{
+        nombrePagina: 'Editando',
+        pasarActividades,
+        actividades
+    })
 }

@@ -11,10 +11,17 @@ module.exports = function () {
 
     router.get('/', proyectoControlador.activdadesInicio);
     router.get('/nueva-actividad',proyectoControlador.formumlarioActividades )
-    router.post('/nueva-actividad', 
+    router.post('/nueva-actividad/', 
     body('nombre').not().isEmpty().trim().escape(),    
-    proyectoControlador.nuevoActividad )
+    proyectoControlador.nuevoActividad );
+
+    //Mostrar actividades
+    router.get('/actividades/:id',proyectoControlador.actividadesURL)
     
+
+    //Actualiza actividades
+    router.get('/actividades/edita/:id',proyectoControlador.actividadesEditarForm)
+   
     return router;
 }
 
