@@ -46,10 +46,47 @@ exports.nuevoActividad = async (req,res) => {
     } else {
         //Insertar datos ya validados
         
-        const agregar = await Actividades.create({nombre});
+      await Actividades.create({nombre});
         res.redirect('/')
 
     }
+}
+
+
+exports.actualizaActividad = async (req,res) => {
+    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+
+  //Send.exports
+  //console.log(req.body)
+
+  //Valida el formulario
+  const { nombre } = req.body;
+  
+  let error = [];
+
+  if(!nombre) { 
+      error.push({'errorTexto': 'Agregar un Nombre a la actividad'});
+  }
+
+  if(error.length>0) {
+      res.render('nuevaActividad', {
+          nombrePagina: 'Nueva actidad',
+          error,
+          pasarActividades
+      }) 
+  } else {
+      //Insertar datos ya validados
+      
+      await Actividades.update(
+          {nombre: nombre},
+        
+          {where: { id: req.params.id}}
+
+          );
+      res.redirect('/')
+
+      //UPDATE actividades SET nombre = 'Nuevo' WHERE id = id
+  }
 }
 
 exports.actividadesURL = async (req,res,next)=>{

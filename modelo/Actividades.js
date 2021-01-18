@@ -21,10 +21,18 @@ const Actividades = db.define('actividades', {
             
             //actividades.idActividades = idActividades;
             actividades.idActividades =  `${idActividades}-${shortid.generate()}`
-        }
+        },
+        beforeUpdate(actividades){
+            const idActividades = slug(actividades.nombre).toLowerCase();
+            
+            //actividades.idActividades = idActividades;
+            actividades.idActividades =  `${idActividades}-${shortid.generate()}`
+        },
+
     }
 }
 )
+
 
 
 module.exports =  Actividades;

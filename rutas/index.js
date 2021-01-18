@@ -21,7 +21,11 @@ module.exports = function () {
 
     //Actualiza actividades
     router.get('/actividades/edita/:id',proyectoControlador.actividadesEditarForm)
-   
+    router.post('/nueva-actividad/:id', 
+    body('nombre').not().isEmpty().trim().escape(),    
+    proyectoControlador.actualizaActividad );
+
+
     return router;
 }
 
