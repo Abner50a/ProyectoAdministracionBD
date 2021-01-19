@@ -14,6 +14,7 @@ const db = require('./conexionBD/db');
 
     //crear tabla
 require('./modelo/Actividades')
+require('./modelo/tareadeActividades')
 
 
 db.sync()

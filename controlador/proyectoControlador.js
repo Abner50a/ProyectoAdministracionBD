@@ -1,4 +1,5 @@
 const Actividades = require('../modelo/Actividades');
+const Tareas = require('../modelo/tareadeActividades')
 const slug = require('slug');
 
 exports.activdadesInicio =async (req,res) => {
@@ -102,11 +103,26 @@ exports.actividadesURL = async (req,res,next)=>{
     const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
     const actidadesPromesa =  Actividades.findOne({
         where: {
-            idActividades: req.params.id
+            idActividades: req.params.url
         }
     });
 
-    const [pasarActividades,actividades] = await Promise.all([pasarActividadesPromesa,actidadesPromesa])
+    const [pasarActividades,actividades] = await Promise.all([pasarActividadesPromesa,actidadesPromesa]);
+
+    //Hacer un select a tarea,
+    
+
+
+    const tareas = await Tareas.findAll({
+      where: {
+        actividadeId : actividades.id
+      }
+    });
+
+   
+ 
+   
+
 
 
     //SELECT * FROM actividades WHERE id = 1;
@@ -119,7 +135,8 @@ exports.actividadesURL = async (req,res,next)=>{
     res.render('tareas', {
         nombrePagina: 'Tareas de las actividades',
         actividades,
-        pasarActividades
+        pasarActividades,
+        tareas
     })
 }
 

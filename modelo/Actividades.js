@@ -10,8 +10,8 @@ const Actividades = db.define('actividades', {
         primaryKey: true,
         autoIncrement: true
     },
-    nombre: Sequelize.STRING,
-    idActividades: Sequelize.STRING
+    nombre: Sequelize.STRING(100),
+    idActividades: Sequelize.STRING(100)
     
 },
 {
@@ -21,13 +21,14 @@ const Actividades = db.define('actividades', {
             
             //actividades.idActividades = idActividades;
             actividades.idActividades =  `${idActividades}-${shortid.generate()}`
-        },
-        beforeUpdate(actividades){
-            const idActividades = slug(actividades.nombre).toLowerCase();
+        }
+
+        // beforeUpdate(actividades){
+        //     const idActividades = slug(actividades.nombre).toLowerCase();
             
-            //actividades.idActividades = idActividades;
-            actividades.idActividades =  `${idActividades}-${shortid.generate()}`
-        },
+        //     //actividades.idActividades = idActividades;
+        //     actividades.idActividades =  `${idActividades}-${shortid.generate()}`
+        // },
 
     }
 }

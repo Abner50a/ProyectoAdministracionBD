@@ -7,11 +7,31 @@ block contenido
 
 
         //objeto Form
-
-
+        form.agregar-tarea(action= `/actividades/${actividades.idActividades}` method="POST" )
+            .campo
+                label(for="tareas") Tareas:
+                input.nombre-tarea(type="text" name="tarea" placeholder="Nombre de la Tarea")
+            .campo.enviar
+                input.boton.nueva-tarea(type="submit", value="agregar")
         //Objeto Lista
 
-        pre= ArregloLimpiado(actividades)          
+        .listado-pendientes
+            ul
+              if tareas.length
+                each tarea in tareas
+                    li.tarea
+                        p= tarea.tarea
+                        .acciones
+                            if tarea.estado
+                                i.far.fa-check-circle.completo
+                            else    
+                                i.far.fa-check-circle
+                            i.fas.fa-trash    
+              else
+                p no hay tareas                   
+
+
+        //- pre= ArregloLimpiado(tareas)          
 
         //Botones Objeto
         .contenedor-acciones

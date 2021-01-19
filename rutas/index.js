@@ -6,6 +6,9 @@ const { body } = require('express-validator/check');
 
 //Ruta del inicio
 const proyectoControlador = require('../controlador/proyectoControlador');
+const tareaControlador = require('../controlador/tareaControlador');
+
+// const tareaActividades = require('../modelo/tareadeActividades');
 
 module.exports = function () {
 
@@ -16,7 +19,7 @@ module.exports = function () {
     proyectoControlador.nuevoActividad );
 
     //Mostrar actividades
-    router.get('/actividades/:id',proyectoControlador.actividadesURL)
+    router.get('/actividades/:url',proyectoControlador.actividadesURL)
     
 
     //Actualiza actividades
@@ -28,6 +31,12 @@ module.exports = function () {
 
     //sentEliminar
     router.delete('/actividades/:id', proyectoControlador.eliminarActividades )
+  
+
+
+    ///Formn Tarea
+    router.post('/actividades/:id', tareaControlador.agregandoTarea)
+
     return router;
 }
 
