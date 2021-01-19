@@ -147,3 +147,21 @@ exports.actividadesEditarForm =  async (req,res) => {
         actividades
     })
 }
+
+exports.eliminarActividades = async (req,res,next) => {
+    //console.log(req.query)
+
+    const {idActividadesServidor} = req.query;
+
+    const getSucess = await Actividades.destroy({
+        where: { 
+            idActividades : idActividadesServidor
+          }
+    })  // DELETE FROM 'tabla' WHERE ID = idActividadesServidor
+
+    if(!getSucess){
+    return next();
+    }
+    res.status(200).send('Actividades Eliminado correctamente.')
+
+}

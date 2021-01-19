@@ -26,6 +26,8 @@ module.exports = function () {
     proyectoControlador.actualizaActividad );
 
 
+    //sentEliminar
+    router.delete('/actividades/:id', proyectoControlador.eliminarActividades )
     return router;
 }
 

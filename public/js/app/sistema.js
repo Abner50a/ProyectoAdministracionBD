@@ -28,23 +28,34 @@ botonEliminar.addEventListener('click', e =>{
          //console.log(getURl)
             
          axios.delete(getURl, {
-             params: idActividadesServidor  
+             params: {idActividadesServidor}  
             })
             .then((enviarRepuesta) =>{
                 console.log(enviarRepuesta)
+
+            
+                Swal.fire(
+                    'Borrado!',
+                    enviarRepuesta.data   ,
+                    'success'
+                  )
+        
+                  //Logica de la BD 
+                  setTimeout(()=>{
+                      window.location.href = '/'
+                  },1000)
+
             })
-        return;
+            .catch(()=>{
+                Swal.fire(
+                    'No se puede borrar!',
+                    'No se pudo borrar'   ,
+                    'success'
+                  )
+            })
 
-          Swal.fire(
-            'Borrado!',
-            'Tu actividad ha sido borrada.',
-            'success'
-          )
 
-          //Logica de la BD 
-          setTimeout(()=>{
-              window.location.href = '/'
-          },1000)
+ 
         }
       })
 })
