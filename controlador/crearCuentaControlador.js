@@ -24,9 +24,16 @@ exports.crearCuentaFormEnviar =  async (req,res,next) => {
         })
     res.redirect('/login') 
     }   catch(e) {
+        //console.log(error.errors.map(error => error.message));
+        req.flash('error', e.errors.map(e => e.message))
+       // console.log(hola)
         res.render('crear-cuenta',{
-            errorEnviar: e.errors,
-            nombrePagina: 'Crear tu cuenta  - Es gratis'
+            Alerta: req.flash() ,
+            nombrePagina: 'Crear tu cuenta  - Es gratis',
+            email,
+            password,
+            nombre
+
         })
     }
 
