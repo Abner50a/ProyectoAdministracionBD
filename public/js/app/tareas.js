@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
+import  {barrita} from '../logicaCliente/logicaBar';  
 
 const tareas = document.querySelector('.listado-pendientes');
 
@@ -25,7 +26,8 @@ if(tareas) {
             .then((res)=> {
                // console.log(res)
                     if(res.status === 200){
-                        imagenRuedaCheck.classList.toggle('completo')
+                        imagenRuedaCheck.classList.toggle('completo');
+                        barrita()
                        // console.log(imagenRuedaCheck)
                     }
             })
@@ -67,6 +69,7 @@ if(tareas) {
                                res.data,
                                 'success'
                            )
+                           barrita();
                         }
                         })
                   }
