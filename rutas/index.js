@@ -7,7 +7,7 @@ const { body } = require('express-validator/check');
 //Ruta del inicio
 const proyectoControlador = require('../controlador/proyectoControlador');
 const tareaControlador = require('../controlador/tareaControlador');
-
+const usuarioConrolador = require('../controlador/crearCuentaControlador');
 // const tareaActividades = require('../modelo/tareadeActividades');
 
 module.exports = function () {
@@ -41,7 +41,16 @@ module.exports = function () {
     router.patch('/misTareas/:id',tareaControlador.cambiaTareaForm);    
 
         //FormuEliminar Tarea 
-    router.delete('/misTareas/:id',tareaControlador.eliminarTareaForm);    
+    router.delete('/misTareas/:id',tareaControlador.eliminarTareaForm); 
+    
+    
+    ///////////////////////////SISTEMA DE USUARIOS ///////////////////
+
+    ////Crea nueva cuenta.
+
+    router.get('/crea-cuenta', usuarioConrolador.crearCuentaForm);
+
+    router.post('/crea-cuenta', usuarioConrolador.crearCuentaFormEnviar);
 
     return router;
 }
