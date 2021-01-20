@@ -6,32 +6,39 @@ block contenido
         h1 #{nombrePagina} - #{actividades.nombre}
 
 
-        //objeto Form
+        //- //objeto Form
         form.agregar-tarea(action= `/actividades/${actividades.idActividades}` method="POST" )
             .campo
                 label(for="tareas") Tareas:
                 input.nombre-tarea(type="text" name="tarea" placeholder="Nombre de la Tarea")
             .campo.enviar
                 input.boton.nueva-tarea(type="submit", value="agregar")
-        //Objeto Lista
+        //- //Objeto Lista 
+
+        .avance
+            h2 Barra de actividades completa
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+
+        //-   insertamos join con JS
 
         .listado-pendientes
             ul
               if tareas.length
                 each tarea in tareas
-                    li.tarea
+                    li.tarea(data-tarea=tarea.id)
                         p= tarea.tarea
                         .acciones
-                            if tarea.estado
-                                i.far.fa-check-circle.completo
-                            else    
+                            if !tarea.disponibilidad
                                 i.far.fa-check-circle
+                            else    
+                                i.far.fa-check-circle.completo
                             i.fas.fa-trash    
               else
                 p no hay tareas                   
 
 
-        //- pre= ArregloLimpiado(tareas)          
+        pre= ArregloLimpiado(tareas)   
 
         //Botones Objeto
         .contenedor-acciones

@@ -35,7 +35,13 @@ module.exports = function () {
 
 
     ///Formn Tarea
-    router.post('/actividades/:id', tareaControlador.agregandoTarea)
+    router.post('/actividades/:id', tareaControlador.agregandoTarea);
+
+        //FormuActualizar Tarea cambai un solo elemento
+    router.patch('/misTareas/:id',tareaControlador.cambiaTareaForm);    
+
+        //FormuEliminar Tarea 
+    router.delete('/misTareas/:id',tareaControlador.eliminarTareaForm);    
 
     return router;
 }
