@@ -64,6 +64,7 @@ app.use(passport.session());
         res.locals.ArregloLimpiado = codigos.regresarObjecto;
         res.locals.Alerta = req.flash();
         res.locals.enviarUsuario = {...req.user} || null
+        
         next();
  }); 
 

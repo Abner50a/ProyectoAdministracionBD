@@ -51,6 +51,6 @@ misUsuario.prototype.checkPass = function(password){
     return encrip.compareSync(password, this.password);
 }
 
-//misUsuario.hasMany(Actividades);
+misUsuario.hasMany(Actividades);
 
 module.exports = misUsuario;

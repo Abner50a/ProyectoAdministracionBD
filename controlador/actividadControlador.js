@@ -5,7 +5,13 @@ const slug = require('slug');
 exports.activdadesInicio =async (req,res) => {
     //Buscamos las actividades hacermos consultas
     
-    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    const usuarioUid = res.locals.enviarUsuario.uid
+    
+    const pasarActividades = await Actividades.findAll({
+        where: {
+            usuarioUid
+        }
+    });  //Equivale a SELECT * FROM actividades
 
 
     res.render('index',{
@@ -15,8 +21,14 @@ exports.activdadesInicio =async (req,res) => {
 }
 
 exports.formumlarioActividades = async (req,res) => {
-    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
-
+   // const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+   const usuarioUid = res.locals.enviarUsuario.uid
+   const pasarActividades = await Actividades.findAll({
+    where: {
+        usuarioUid
+    }
+});  //Equivale a SELECT * FROM actividades
+   
     res.render('nuevaActividad', {
         nombrePagina: 'Nueva actividad',
         pasarActividades
@@ -24,12 +36,19 @@ exports.formumlarioActividades = async (req,res) => {
 }
 
 exports.nuevoActividad = async (req,res) => {
-      const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+     // const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
   
     //Send.exports
     //console.log(req.body)
 
     //Valida el formulario
+    const usuarioUid = res.locals.enviarUsuario.uid
+    const pasarActividades = await Actividades.findAll({
+        where: {
+            usuarioUid
+        }
+    });  //Equivale a SELECT * FROM actividades
+
     const { nombre } = req.body;
     
     let error = [];
@@ -46,8 +65,9 @@ exports.nuevoActividad = async (req,res) => {
         }) 
     } else {
         //Insertar datos ya validados
-        
-      await Actividades.create({nombre});
+            //insertamos al usuario
+        const usuarioUid = res.locals.enviarUsuario.uid
+        await Actividades.create({nombre,usuarioUid });
         res.redirect('/')
 
     }
@@ -55,10 +75,20 @@ exports.nuevoActividad = async (req,res) => {
 
 
 exports.actualizaActividad = async (req,res) => {
-    const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    //const pasarActividades = await Actividades.findAll();  //Equivale a SELECT * FROM actividades
 
   //Send.exports
   //console.log(req.body)
+
+  const usuarioUid = res.locals.enviarUsuario.uid
+    
+  const pasarActividades = await Actividades.findAll({
+      where: {
+          usuarioUid
+      }
+  });  //Equivale a SELECT * FROM actividades
+
+
 
   //Valida el formulario
   const { nombre } = req.body;
@@ -100,10 +130,19 @@ exports.actividadesURL = async (req,res,next)=>{
     // })
 
 
-    const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
+    const usuarioUid = res.locals.enviarUsuario.uid
+    
+    const pasarActividadesPromesa =  Actividades.findAll({
+        where: {
+            usuarioUid
+        }
+    });  //Equivale a SELECT * FROM actividades
+
+  //  const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
     const actidadesPromesa =  Actividades.findOne({
         where: {
-            idActividades: req.params.url
+            idActividades: req.params.url,
+            usuarioUid
         }
     });
 
@@ -148,11 +187,20 @@ exports.actividadesEditarForm =  async (req,res) => {
     //     }
     // });
 
+    const usuarioUid = res.locals.enviarUsuario.uid
+    
+    const pasarActividadesPromesa =  Actividades.findAll({
+        where: {
+            usuarioUid
+        }
+    });  //Equivale a SELECT * FROM actividades
 
-    const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
+
+   // const pasarActividadesPromesa =  Actividades.findAll();  //Equivale a SELECT * FROM actividades
     const actidadesPromesa =  Actividades.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            usuarioUid
         }
     });
 
