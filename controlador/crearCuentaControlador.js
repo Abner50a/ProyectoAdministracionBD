@@ -1,5 +1,5 @@
 const misUsuario = require('../modelo/usuariosModelo');
-const miUsuario = require('../modelo/usuariosModelo');
+//const miUsuario = require('../modelo/usuariosModelo');
 
 exports.crearCuentaForm = (req,res,next) => {
     res.render('crear-cuenta',{

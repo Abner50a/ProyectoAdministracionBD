@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const encrip = require('bcrypt-nodejs');
 const db = require('../conexionBD/db');
-const Actividades = require('../modelo/Actividades')
+const Actividades = require('../modelo/Actividades');
+const passport = require('passport');
 const misUsuario = db.define('usuarios', {
     uid: {
         type: Sequelize.INTEGER,
@@ -45,6 +46,11 @@ const misUsuario = db.define('usuarios', {
     }
 });
 
-misUsuario.hasMany(Actividades);
+//Funciones 
+misUsuario.prototype.checkPass = function(password){
+    return encrip.compareSync(password, this.password);
+}
+
+//misUsuario.hasMany(Actividades);
 
 module.exports = misUsuario;

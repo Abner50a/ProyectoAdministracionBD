@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="es")
+    head
+        include baseinfo/header
+    body.login
+        .contenedor-formulario
+            h1 Logea tu cuenta
+
+            if error
+                p.alerta.error= error
+                
+
+         
+
+            form#formulario.caja.caja-login(method="POST" action="/login")
+                .campo
+                    label(for="email") Correo Electronico
+                    input(type="email" name="email" placeholder="Tu correo" value= email )
+                .campo
+                    label(for="password") Tu contraseña
+                    input(type="password" name="password" placeholder="Tu contraseña" value= password )
+                .campo.enviar
+                    input.boton(type="submit" value="Login")
+                .campo
+                    a(href="/crea-cuenta") Crear cuenta
+    script(src="/dist/app.js")                
+

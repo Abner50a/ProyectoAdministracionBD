@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParse = require('body-parser');
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
+const passport = require('./conexionBD/pass');
 
 const flash = require('connect-flash');
 
@@ -54,10 +55,15 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
  //Pasar codigo
  app.use((req,res,next)=>{
+        //console.log(req.user)
         res.locals.ArregloLimpiado = codigos.regresarObjecto;
         res.locals.Alerta = req.flash();
+        res.locals.enviarUsuario = {...req.user} || null
         next();
  }); 
 

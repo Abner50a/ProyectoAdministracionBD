@@ -5,43 +5,60 @@ const { body } = require('express-validator/check');
 
 
 //Ruta del inicio
-const proyectoControlador = require('../controlador/proyectoControlador');
+const actividadControlador = require('../controlador/actividadControlador');
 const tareaControlador = require('../controlador/tareaControlador');
 const usuarioConrolador = require('../controlador/crearCuentaControlador');
+const loginControlador = require('../controlador/loginControler');
+const loginValidacion = require('../controlador/loginValidacionController');
 // const tareaActividades = require('../modelo/tareadeActividades');
 
 module.exports = function () {
 
-    router.get('/', proyectoControlador.activdadesInicio);
-    router.get('/nueva-actividad',proyectoControlador.formumlarioActividades )
-    router.post('/nueva-actividad/', 
+    router.get('/', 
+    loginValidacion.usuarioVerificadoDisponible,
+    actividadControlador.activdadesInicio);
+
+    router.get('/nueva-actividad',
+    loginValidacion.usuarioVerificadoDisponible,
+    actividadControlador.formumlarioActividades )
+    
+    router.post('/nueva-actividad/',
+    loginValidacion.usuarioVerificadoDisponible,
     body('nombre').not().isEmpty().trim().escape(),    
-    proyectoControlador.nuevoActividad );
+    actividadControlador.nuevoActividad );
 
     //Mostrar actividades
-    router.get('/actividades/:url',proyectoControlador.actividadesURL)
+    router.get('/actividades/:url',
+    loginValidacion.usuarioVerificadoDisponible,
+    actividadControlador.actividadesURL)
     
 
     //Actualiza actividades
-    router.get('/actividades/edita/:id',proyectoControlador.actividadesEditarForm)
-    router.post('/nueva-actividad/:id', 
+    router.get('/actividades/edita/:id', loginValidacion.usuarioVerificadoDisponible,
+    actividadControlador.actividadesEditarForm)
+
+    router.post('/nueva-actividad/:id', loginValidacion.usuarioVerificadoDisponible, 
     body('nombre').not().isEmpty().trim().escape(),    
-    proyectoControlador.actualizaActividad );
+    actividadControlador.actualizaActividad );
 
 
     //sentEliminar
-    router.delete('/actividades/:id', proyectoControlador.eliminarActividades )
+    router.delete('/actividades/:id', loginValidacion.usuarioVerificadoDisponible,
+    actividadControlador.eliminarActividades )
   
 
 
     ///Formn Tarea
-    router.post('/actividades/:id', tareaControlador.agregandoTarea);
+    router.post('/actividades/:id', loginValidacion.usuarioVerificadoDisponible,
+    tareaControlador.agregandoTarea);
 
         //FormuActualizar Tarea cambai un solo elemento
-    router.patch('/misTareas/:id',tareaControlador.cambiaTareaForm);    
+    router.patch('/misTareas/:id',loginValidacion.usuarioVerificadoDisponible,
+    tareaControlador.cambiaTareaForm);    
 
         //FormuEliminar Tarea 
-    router.delete('/misTareas/:id',tareaControlador.eliminarTareaForm); 
+    router.delete('/misTareas/:id',loginValidacion.usuarioVerificadoDisponible,
+    tareaControlador.eliminarTareaForm); 
     
     
     ///////////////////////////SISTEMA DE USUARIOS ///////////////////
@@ -52,6 +69,13 @@ module.exports = function () {
 
     router.post('/crea-cuenta', usuarioConrolador.crearCuentaFormEnviar);
 
+
+
+    //////////Login
+    router.get('/login', loginControlador.loginForm );
+    router.post('/login', loginValidacion.validarUsuario);
+
+    router.get('/salir', loginValidacion.salirCuenta );
     return router;
 }
 
