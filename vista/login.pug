@@ -5,7 +5,7 @@ head
 section.container
   .card.position-absolute.top-50.start-50.translate-middle
     if error
-        p.alerta.error= error
+        p.alert.alert-danger= error
                 
     form.px-4.py-3(method="POST" action="/login")
       .mb-3

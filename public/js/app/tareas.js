@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 import  {barrita} from '../logicaCliente/logicaBar';  
 
-const tareas = document.querySelector('.listado-pendientes');
+const tareas = document.querySelector('.ver-lista-tareas');
 
 
 if(tareas) {
@@ -11,7 +11,7 @@ if(tareas) {
         //console.log(e.target.classList)
         
 
-        if(e.target.classList.contains('fa-check-circle')){
+        if(e.target.classList.contains('fa-check-double')){
             const imagenRuedaCheck = e.target;
             const idTareaActividades = imagenRuedaCheck.parentElement.parentElement.dataset.tarea;
            // const tareaIDUsuario = 0;
@@ -26,14 +26,14 @@ if(tareas) {
             .then((res)=> {
                // console.log(res)
                     if(res.status === 200){
-                        imagenRuedaCheck.classList.toggle('completo');
+                        imagenRuedaCheck.classList.toggle('marcado');
                         barrita()
                        // console.log(imagenRuedaCheck)
                     }
             })
         }
 
-        if(e.target.classList.contains('fa-trash')){
+        if(e.target.classList.contains('fa-minus-circle')){
             const traerTareaHtml = e.target.parentElement.parentElement,
                 idMistareas =  traerTareaHtml.dataset.tarea;           
             // console.log(traerTareaHtml)

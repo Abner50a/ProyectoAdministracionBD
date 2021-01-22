@@ -9,15 +9,15 @@ html(lang="es")
                      a.navbar-brand.text-white(href='#') Organiza tus actividades
                 span.navbar-text
                 a.text-white(href='/salir')  Cerrar Sesión
-        main.contenedor
-            aside.menu-izquierdo
-                .panel
+        main.barra-barra-izquierda
+            aside.es-menu-izquierdo
+                .muestra-actividades
                     a(href="/nueva-actividad" class="btn btn-primary") Nueva Activdad
                         span 
 
-                .panel.lista-proyectos
+                .muestra-actividades.lista-actividades
                     h2 Actividades
-                    ul#proyectos.proyectos
+                    ul#activididades.lista-actividades
                        if(pasarActividades.length)
                             each actividades in pasarActividades
                                 li

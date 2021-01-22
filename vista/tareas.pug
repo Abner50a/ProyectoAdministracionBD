@@ -2,27 +2,27 @@ extends  archivoBase
 
 
 block contenido
-    .contenido-principal
-        h1 #{nombrePagina} - #{actividades.nombre}
+    .container
+        h1.textoCentro #{nombrePagina} - #{actividades.nombre}
 
 
         //- //objeto Form
-        form.agregar-tarea(action= `/actividades/${actividades.idActividades}` method="POST" )
-            .campo
-                label(for="tareas") Tareas:
-                input.nombre-tarea(type="text" name="tarea" placeholder="Nombre de la Tarea")
+        form.fondo(action= `/actividades/${actividades.idActividades}` method="POST" )
+            .form-floating.mb-3
+                input.form-control(type="text" name="tarea" placeholder="Nombre de la Tarea")
+                label.text-dark(for="floatingInput") Tareas:
             .campo.enviar
-                input.boton.nueva-tarea(type="submit", value="agregar")
+                input.btn.btn-primary(type="submit", value="Agregar Tarea")
         //- //Objeto Lista 
 
         .avance
-            h2 Barra de actividades completa
-            #barra-avance.barra-avance
-                #porcentaje.porcentaje
+            h2.textoCentro Barra de Tarea completa
+            #progress-bar.progress-bar-striped.bg-warning.barra-body
+                #subirPorcentaje.subirPorcentaje
 
         //-   insertamos join con JS
 
-        .listado-pendientes
+        .ver-lista-tareas
             ul
               if tareas.length
                 each tarea in tareas
@@ -30,17 +30,18 @@ block contenido
                         p= tarea.tarea
                         .acciones
                             if !tarea.disponibilidad
-                                i.far.fa-check-circle
+                                i.fas.fa-check-double
                             else    
-                                i.far.fa-check-circle.completo
-                            i.fas.fa-trash    
+                                i.fas.fa-check-double.marcado
+                            i.fas.fa-minus-circle   
+                            
               else
                 p no hay tareas                   
 
 
-        pre= ArregloLimpiado(tareas)   
+        //- pre= ArregloLimpiado(tareas)   
 
         //Botones Objeto
-        .contenedor-acciones
-            a(href=`/actividades/edita/${actividades.id}` class="boton") Editar Actividad
-            button#eliminar-actividad(data-acividades-id=actividades.idActividades type="button" class="boton eliminar") Borrar actividad
+        .container-fluid.botones-Abajos
+            a(href=`/actividades/edita/${actividades.id}` class="btn btn-outline-primary") Editar Actividad
+            button#eliminar-actividad(data-acividades-id=actividades.idActividades type="button" class="btn btn-outline-danger") Borrar actividad
