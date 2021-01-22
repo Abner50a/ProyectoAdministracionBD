@@ -10,5 +10,5 @@ block contenido
 
         if error
             each arreglo in error
-                .alerta= arreglo.errorTexto
+                .alert.alert-danger= arreglo.errorTexto
         +crearActividades(actividades)

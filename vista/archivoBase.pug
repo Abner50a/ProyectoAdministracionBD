@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 html(lang="es")
     head
-        include baseinfo/header
+        include baseinfo/header-index
     body
-        header.barra
-            h1 Activdades de tareas
-            a(href="/salir") cerrar sesion
-
+        header
+            nav.navbar.navbar-expand-lg.color-header
+                .container-fluid
+                     a.navbar-brand.text-white(href='#') Organiza tus actividades
+                span.navbar-text
+                a.text-white(href='/salir')  Cerrar Sesión
         main.contenedor
-            aside.contenedor-proyectos
-                .panel.crear-proyecto
-                    a(href="/nueva-actividad" class="boton") Nueva Activdad
-                        span +
+            aside.menu-izquierdo
+                .panel
+                    a(href="/nueva-actividad" class="btn btn-primary") Nueva Activdad
+                        span 
 
                 .panel.lista-proyectos
                     h2 Actividades

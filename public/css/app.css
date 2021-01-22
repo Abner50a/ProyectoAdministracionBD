@@ -8,7 +8,14 @@ body {
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
 }
-/** Login **/
+/** Header */
+.color-header{
+    background-color: #162B32;
+}
+
+
+
+/** Login *
 .login,
 .crear-cuenta {
     background: #455A64;
@@ -106,6 +113,18 @@ body {
     text-decoration: none;
 }
 
+*/
+
+
+/**  **/
+    /** Alerta **/
+    .alerta {
+        text-align: center;
+    }
+
+
+/**  **/
+
 /** Barra **/
 body.index {
     height: 100vh;
@@ -128,10 +147,10 @@ body.index {
     text-decoration: none;
 }
 /*** sidebar**/
-.contenedor-proyectos {
+.menu-izquierdo {
     height: 100%;
     max-width: 300px;
-    background-color: #607D8B;
+    background-color: #162B32;
     padding-top: 1rem;
 }
 .panel {
@@ -278,15 +297,16 @@ body.index {
     transition: width .3s ease;
 }
 
-form.agregar-proyecto {
+form.fondo {
     max-width: 800px;
     width: 90%;
-    background-color: #607D8B;
+    background-color: #162B32;
     margin: 0 auto;
     padding: 2rem;
     color: white;
     transition: background-color .5s ease-in-out;
 }
+/* 
 form.agregar-proyecto label,
 form.agregar-proyecto input {
     display: block;
@@ -312,7 +332,7 @@ form input[type="submit"]{
     color: black;
     width: auto;
     margin: 0;
-}
+} */
 
 .contenedor-acciones {
     max-width: 800px;

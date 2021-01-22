@@ -1,7 +1,7 @@
 mixin crearActividades(actividades = {})
-    form.agregar-proyecto(action=`/nueva-actividad/${actividades.id || ''}` method="POST")
-            .campo
-                label(for="Nombre") Nombre:
-                input(value=actividades.nombre type="text" id="nombre" name="nombre" placeholder="Nombre actividad")
-            .campo.enviar
-                input(type="submit" value=`${actividades.nombre ? 'Actualizar Nombre' : 'Agregar'}` class="boton")
+    form.fondo(action=`/nueva-actividad/${actividades.id || ''}` method="POST")
+            .form-floating.mb-3
+                input.form-control(value=actividades.nombre type="text" id="nombre" name="nombre" placeholder="Nombre actividad")
+                label.text-dark(for="floatingInput") Nombre:
+            .hola
+                input(type="submit" value=`${actividades.nombre ? 'Actualizar Nombre de la actividad' : 'Agregar'}` class="btn btn-primary")
